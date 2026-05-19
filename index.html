@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MSME BUSINESS CARE</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      overflow-x:hidden;
+      background:#f2f2f2;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    .navbar{
+      width:100%;
+      height:70px;
+      background:#111;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 40px;
+      position:fixed;
+      top:0;
+      z-index:999;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:white;
+      font-size:20px;
+      font-weight:bold;
+    }
+
+    .logo-box{
+      width:45px;
+      height:45px;
+      background:#001f66;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      border-radius:4px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:28px;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:yellow;
+    }
+
+    /* ================= HERO SECTION ================= */
+
+    .hero{
+      width:100%;
+      height:100vh;
+      background:linear-gradient(to right,#0046b8,#7f45ff,#2f9fff);
+      position:relative;
+      overflow:hidden;
+      margin-top:70px;
+    }
+
+    /* slider */
+
+    .slider{
+      width:100%;
+      height:100%;
+      position:relative;
+    }
+
+    .slide{
+      position:absolute;
+      width:fit-content;
+      height:fit-content;
+      opacity:0;
+      transition:1s;
+    }
+
+    .slide.active{
+      opacity:1;
+      z-index:1;
+    }
+
+    .slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* overlay content */
+
+    .overlay{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.15);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:40px 70px;
+      z-index:5;
+    }
+
+    /* LEFT TEXT */
+
+    .left-content{
+      width:55%;
+      color:white;
+      animation:fadeLeft 1s ease;
+    }
+
+    .left-content h1{
+      font-size:62px;
+      margin-bottom:15px;
+      font-weight:bold;
+      line-height:1.1;
+      text-transform:uppercase;
+    }
+
+    .left-content h2{
+      font-size:38px;
+      margin-bottom:20px;
+      color:yellow;
+    }
+
+    .left-content p{
+      font-size:26px;
+      line-height:1.7;
+      margin-bottom:15px;
+      font-weight:500;
+    }
+
+    .highlight{
+      background:white;
+      color:#0026ff;
+      display:inline-block;
+      padding:8px 16px;
+      font-size:28px;
+      font-weight:bold;
+      margin-bottom:20px;
+    }
+
+    .btn{
+      margin-top:20px;
+      padding:16px 35px;
+      background:#000080;
+      color:white;
+      border:none;
+      font-size:18px;
+      cursor:pointer;
+      border-radius:5px;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    .btn:hover{
+      background:#ffcc00;
+      color:black;
+      transform:scale(1.05);
+    }
+
+    /* RIGHT IMAGE */
+
+    .right-image{
+      width:35%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+      animation:fadeRight 1s ease;
+    }
+
+    .right-image img{
+      width:90%;
+      max-height:650px;
+      object-fit:contain;
+      filter:drop-shadow(0px 0px 25px rgba(0,0,0,0.4));
+    }
+
+    /* BOTTOM LOGO AREA */
+
+    .bottom-box{
+      position:absolute;
+      bottom:30px;
+      left:70px;
+      display:flex;
+      align-items:center;
+      gap:30px;
+      z-index:10;
+      background:rgba(0,0,0,0.25);
+      padding:15px 25px;
+      border-radius:8px;
+    }
+
+    .business-logo{
+      background:#08164d;
+      padding:18px 30px;
+      color:white;
+      font-size:26px;
+      font-weight:bold;
+    }
+
+    .aajtak{
+      font-size:55px;
+      color:#ffcc00;
+      font-weight:bold;
+    }
+
+    .aajtak span{
+      color:red;
+    }
+
+    /* SIDE CONTACT */
+
+    .contact-box{
+      position:absolute;
+      left:0;
+      bottom:120px;
+      background:#050048;
+      color:white;
+      padding:20px;
+      border-radius:0 12px 12px 0;
+      z-index:20;
+      width:230px;
+      box-shadow:0px 0px 15px rgba(0,0,0,0.3);
+    }
+
+    .contact-box h3{
+      font-size:30px;
+      margin-bottom:10px;
+    }
+
+    .contact-box p{
+      font-size:20px;
+      font-weight:bold;
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeLeft{
+      from{
+        opacity:0;
+        transform:translateX(-60px);
+      }
+      to{
+        opacity:1;
+        transform:translateX(0);
+      }
+    }
+
+    @keyframes fadeRight{
+      from{
+        opacity:0;
+        transform:translateX(60px);
+      }
+      to{
+        opacity:1;
+        transform:translateX(0);
+      }
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1100px){
+
+      .overlay{
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+        padding-top:100px;
+      }
+
+      .left-content{
+        width:100%;
+      }
+
+      .right-image{
+        width:100%;
+      }
+
+      .left-content h1{
+        font-size:42px;
+      }
+
+      .left-content p{
+        font-size:20px;
+      }
+
+      .bottom-box{
+        left:50%;
+        transform:translateX(-50%);
+      }
+
+      .contact-box{
+        display:none;
+      }
+    }
+
+
+
+
+    /* ================= DROPDOWN CORE STYLES ================= */
+
+    /* Dropdown container ko relative position dena zaroori h */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Choti arrow icon styling */
+    .arrow {
+      font-size: 10px;
+      margin-left: 2px;
+      vertical-align: middle;
+    }
+
+    /* Dropdown menu ki list */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%; /* About link ke theek neeche khulega */
+      left: 0;
+      background-color: #1a1a1a; 
+      min-width: 240px; 
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      border-radius: 4px;
+      padding: 8px 0;
+      
+      /* =============== INVISIBLE GAP FILLER (FIX) =============== */
+      margin-top: 0px; /* Agar margin lagayi thi toh use 0 kar do */
+      border-top: 10px solid transparent; /* Ye invisible border gap ko fill karega bina dikhe */
+    }
+
+    /* Dropdown ke andar ke individual links */
+    .dropdown-content a {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+      font-size: 15px;
+      text-align: left;
+      transition: 0.2s ease;
+    }
+
+    /* Dropdown links par hover effect */
+    .dropdown-content a:hover {
+      background-color: #333;
+      color: #ffcc00; /* Hover karne par text yellow ho jayega */
+      padding-left: 25px; /* Chota sa smooth sliding effect */
+    }
+
+    /* MAIN MAGIC: Jab parent .dropdown par hover hoga, tab .dropdown-content show hoga */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    /* Hover karne par arrow thodi ghum jaye */
+    .dropdown:hover .arrow {
+      color: #ffcc00;
+    }
+    
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+      <div class="logo-box">M</div>
+      MSMEBUSINESSCARE
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      
+      <div class="dropdown">
+        <a href="#" class="dropdown-btn">About <span class="arrow">▼</span></a>
+        <div class="dropdown-content">
+          <a href="#">Our Founder</a>
+          <a href="#">Mission & Vision</a>
+          <a href="#">Why Us</a>
+          <a href="#">TV Advertising</a>
+          <a href="#">Dealer Network</a>
+          <a href="#">Business Promotion</a>
+          <a href="#">Advertise on Aaj Tak</a>
+        </div>
+      </div>
+
+      <a href="#">Blog</a>
+      <a href="#">Award</a>
+      <a href="#">Service</a>
+      <a href="#">Gallery</a>
+      <a href="#">FAQ</a>
+      <a href="#">News</a>
+      <a href="#">Contact</a>
+    </div>
+
+  </nav>
+
+  <!-- ================= HERO ================= -->
+
+  <section class="hero">
+
+    <!-- SIDE CONTACT -->
+
+    <div class="contact-box">
+      <h3>Contact Us</h3>
+      <p>+91 9876543210</p>
+    </div>
+
+    <!-- SLIDER -->
+
+    <div class="slider">
+
+      <!-- slide 1 -->
+
+      <div class="slide active">
+        <img src="img/Screenshot 2026-05-19 105214.png">
+      </div>
+
+      <!-- slide 2 -->
+
+      <div class="slide">
+        <img src="img/Screenshot 2026-05-19 105312.png">
+      </div>
+
+      <!-- slide 3 -->
+
+      <div class="slide">
+        <img src="img/Screenshot 2026-05-19 151925.png">
+      </div>
+
+      <!-- slide 4 -->
+
+      <div class="slide">
+        <img src="img/Screenshot 2026-05-19 152447.png">
+      </div>
+
+      <!-- slide 5 -->
+
+      <div class="slide">
+        <img src="img/Screenshot 2026-05-19 152732.png">
+      </div>
+
+    </div>
+
+    <!-- CONTENT OVERLAY -->
+
+    <div class="overlay">
+
+      <!-- LEFT -->
+
+      <!-- <div class="left-content"> -->
+
+        <!-- <div class="highlight">
+          BUSINESS CARE TV SHOW
+        </div> -->
+
+        <!-- <h1>
+          Business Care <br> TV Show
+        </h1> -->
+
+        <!-- <h2>
+          Best Commercial Business TV Show
+        </h2> -->
+
+        <!-- <p>
+          Which Provide startups, MSMEs, industrialists
+          and business owners prestigious opportunity
+          to present their real success stories
+          on national TV channel.
+        </p> -->
+
+        <!-- <button class="btn">
+          Explore More
+        </button> -->
+
+      <!-- </div> -->
+
+      <!-- RIGHT -->
+
+      <div class="right-image">
+
+        <img src="https://pngimg.com/d/business_woman_PNG6562.png">
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM BOX -->
+
+    <div class="bottom-box">
+
+      <div class="business-logo">
+        Business Care
+      </div>
+
+      <div class="aajtak">
+        <span>Aaj</span> Tak HD
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= JS ================= -->
+
+  <script>
+
+    const slides = document.querySelectorAll(".slide");
+
+    let currentSlide = 0;
+
+    function changeSlide(){
+
+      slides[currentSlide].classList.remove("active");
+
+      currentSlide++;
+
+      if(currentSlide >= slides.length){
+        currentSlide = 0;
+      }
+
+      slides[currentSlide].classList.add("active");
+    }
+
+    setInterval(changeSlide,3000);
+
+  </script>
+
+</body>
+</html>
